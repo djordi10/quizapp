@@ -82,7 +82,6 @@ const QuizTopicsScreen: React.FC = () => {
           <video
             ref={videoRef}
             onEnded={onVideoEnd}
-            controls
           >
             <source src="https://storage.cloud.google.com/rektbookie/quiz-video/video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
