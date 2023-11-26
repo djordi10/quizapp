@@ -9,7 +9,9 @@ export enum ScreenTypes {
   ResultScreen,
   VideoScreen,
   EssayScreen,
-  LoginScreen
+  LoginScreen,
+  AdminScreen,
+  AdminEssayScreen
 }
 
 export interface Result extends Question {

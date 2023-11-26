@@ -11,6 +11,8 @@ import ResultScreen from '../ResultScreen'
 import SplashScreen from '../SplashScreen'
 import EssayScreen from '../QuizEssayScreen'
 import LoginScreen from '../LoginScreen'
+import AdminScreen from '../AdminScreen'
+import AdminEssayScreen from '../AdminEssayScreen'
 
 function Main() {
   const { currentScreen, setCurrentScreen, setCurrentStep } = useQuiz()
@@ -18,8 +20,11 @@ function Main() {
   useEffect(() => {
     setTimeout(() => {
       if(localStorage.getItem('token')){
-        setCurrentScreen(ScreenTypes.QuizTopicsScreen)
-        setCurrentStep(1)
+        if(localStorage.getItem('dosen')){
+          setCurrentScreen(ScreenTypes.AdminScreen)
+        }else{
+          setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+        }
       }else{
         setCurrentScreen(ScreenTypes.LoginScreen)
       }
@@ -35,6 +40,8 @@ function Main() {
     [ScreenTypes.VideoScreen]: <VideoScreen />,
     [ScreenTypes.EssayScreen]: <EssayScreen />,
     [ScreenTypes.LoginScreen]: <LoginScreen />,
+    [ScreenTypes.AdminScreen]: <AdminScreen />,
+    [ScreenTypes.AdminEssayScreen]: <AdminEssayScreen />,
   }
 
   const ComponentToRender = screenComponents[currentScreen] || <SplashScreen />

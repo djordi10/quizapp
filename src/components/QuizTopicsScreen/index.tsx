@@ -89,23 +89,40 @@ const CarouselImage = styled.img`
 `;
 
 const QuizTopicsScreen: React.FC = () => {
-  const { setCurrentScreen, currentStep } = useQuiz();
+  const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
   const [showPopup, setShowPopup] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [welcomeMessage, setWelcomeMessage] = useState('');
 
+  useEffect(() => {
+    setCurrentStep( parseInt(localStorage.getItem('step'))  )
+  }, []);
+
   const handleButtonClick = (targetStep: number) => {
+    // Show popup if the current step is less than the target step
     if (currentStep < targetStep) {
       setShowPopup(true);
-    } else if(targetStep == 1){
-      setCurrentScreen(ScreenTypes.VideoScreen)
-    } else if(targetStep == 2){
-      setCurrentScreen(ScreenTypes.QuizDetailsScreen)
-    } else if(targetStep == 3){
-      setCurrentScreen(ScreenTypes.EssayScreen)
+    }
+  
+    // Navigate to specific screens based on targetStep and currentStep
+    if (targetStep === 1) {
+      setCurrentScreen(ScreenTypes.VideoScreen);
+    } else if (targetStep === 2) {
+      if (currentStep === 2) {
+        setCurrentScreen(ScreenTypes.QuizDetailsScreen);
+      }
+    } else if (targetStep === 3) {
+      setCurrentScreen(ScreenTypes.EssayScreen);
     }
   };
+
+  const handleLogout = () => {
+    // Show popup if the current step is less than the target step
+    localStorage.clear();
+    setCurrentScreen(ScreenTypes.LoginScreen)
+  };
+  
 
   useEffect(() => {
     if(currentStep == 1){
@@ -165,6 +182,13 @@ const QuizTopicsScreen: React.FC = () => {
             onClick={() => handleButtonClick(3)}
           >
             <SelectButtonText>Tuliskan</SelectButtonText>
+          </SelectButton>
+          <SelectButton
+            active={true}
+            completed={false}
+            onClick={() => handleLogout()}
+          >
+            <SelectButtonText>Logout</SelectButtonText>
           </SelectButton>
         </SelectButtonContainer>
         {showPopup && (

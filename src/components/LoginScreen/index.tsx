@@ -62,18 +62,26 @@ const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://quizbackend-orcin.vercel.app/login', { nim, password });
-      const { token, fullname } = response.data;
+      const response = await axios.post('http://https://quizbackend-orcin.vercel.app//login', { nim, password });
+      const { token, fullname, dosen } = response.data;
   
       // Store the token and fullname in local storage
-      localStorage.setItem('token', token);
-      localStorage.setItem('fullname', fullname);
-  
-      // Redirect or update the UI based on successful login
-      // For example, changing the screen or showing a welcome message
-      // ...
-      setCurrentScreen(ScreenTypes.QuizTopicsScreen)
-      setCurrentStep(1)
+      if(!dosen){
+        localStorage.setItem('token', token);
+        localStorage.setItem('fullname', fullname);
+        localStorage.setItem('step', "1");
+    
+        // Redirect or update the UI based on successful login
+        // For example, changing the screen or showing a welcome message
+        // ...
+        setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+        setCurrentStep(1)
+      }else{
+        localStorage.setItem('token', token);
+        localStorage.setItem('fullname', fullname);
+        localStorage.setItem('dosen', 'dosen');
+        setCurrentScreen(ScreenTypes.AdminScreen)
+      }
     } catch (error) {
       console.error('Login error:', error.response?.data || error.message);
       // Handle login failure (e.g., show error message)

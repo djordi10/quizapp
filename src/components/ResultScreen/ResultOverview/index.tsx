@@ -42,7 +42,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
       const scoreData = {  score: obtainedScore };
   
       try {
-        const response = await fetch('https://quizbackend-orcin.vercel.app/submit-score', {
+        const response = await fetch('http://https://quizbackend-orcin.vercel.app//submit-score', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

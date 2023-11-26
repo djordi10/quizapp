@@ -13,17 +13,23 @@ import CodeSnippet from '../ui/CodeSnippet'
 import QuizImage from '../ui/QuizImage'
 import ResultOverview from './ResultOverview'
 import RightAnswer from './RightAnswer'
+import MatchingAnswers from './RightPair'
 
 const ResultScreenContainer = styled.div`
   max-width: 900px;
   margin: 60px auto;
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+
   @media ${device.md} {
     width: 90%;
     margin: 30px auto;
   }
-  // Enable scrolling for the entire container
-  overflow-y: auto;
-  height: calc(100vh - 120px); // Adjust height as needed
+`;
+
+const FlexEndContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const InnerContainer = styled.div`
@@ -127,7 +133,9 @@ const ResultScreen: FC = () => {
 
   const onClickRetry = () => {
     setCurrentStep(3)
-    setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+    localStorage.setItem('step','3')
+    //setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+    window.location.reload()
   }
 
   return (
@@ -136,17 +144,82 @@ const ResultScreen: FC = () => {
       </LogoContainer>
       <InnerContainer>
         <ResultOverview result={result} />
-       
+        {result.map(
+          (
+            {
+              question,
+              choices,
+              code,
+              image,
+              correctAnswers,
+              selectedAnswer,
+              score,
+              isMatch,
+              type,
+              correctPairs
+            },
+            index: number
+          ) => {
+            return (
+              <QuestionContainer key={question}>
+                <ResizableBox width="90%">
+                  <Flex gap="4px">
+                    <QuestionNumber>{`${index + 1}. `}</QuestionNumber>
+                    <QuestionStyle>{question}</QuestionStyle>
+                  </Flex>
+                  <div>
+                    {code && <CodeSnippet code={code} language="javascript" />}
+                    {image && <QuizImage image={image} />}
+                    <ul>
+                      {choices?.map((ans: string, index: number) => {
+                        const label = String.fromCharCode(65 + index);
+
+                        // Check if the current answer is selected
+                        const isSelected = selectedAnswer.includes(ans);
+
+                        let isCorrect;
+                        // Check if the current answer is correct
+                        if(type != "matching"){
+                          const isCorrect = (correctAnswers as string[]).includes(ans);
+                        }
+
+                        const correct = isSelected && isCorrect;
+                        const wrong = isSelected && !isCorrect;
+
+                        return (
+                          <Answer key={index} correct={correct} wrong={wrong}>
+                            <span>{label}.</span>
+                            {ans}
+                          </Answer>
+                        );
+                      })}
+                    </ul>
+                    {/* only show if the answer is wrong */}
+                    {type === "matching" && correctPairs ? (
+                      <MatchingAnswers correctPairs={correctPairs} />
+                    ) : (
+                      // Render RightAnswer for non-matching question types
+                      !isMatch && (
+                        <RightAnswer correctAnswers={correctAnswers as string[]} choices={choices} />
+                      )
+                    )}
+                  </div>
+                </ResizableBox>
+                <Score right={isMatch}>{`Score ${isMatch ? score : 0}`}</Score>
+              </QuestionContainer>
+            )
+          }
+        )}
       </InnerContainer>
-      <Flex flxEnd>
+      <FlexEndContainer>
         <Button
           text="Lanjutkan"
           onClick={onClickRetry}
-          icon={<Refresh />}
+          icon={<Refresh />} // Adjust this based on how you implement icons
           iconPosition="left"
           bold
         />
-      </Flex>
+      </FlexEndContainer>
     </ResultScreenContainer>
   )
 }
