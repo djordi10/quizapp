@@ -50,7 +50,7 @@ const EssayScreen: React.FC = () => {
     const fetchFeedback = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://https://quizbackend-orcin.vercel.app//get-feedback', {
+        const response = await axios.get('https://quizbackend-orcin.vercel.app/get-feedback', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -80,7 +80,7 @@ const EssayScreen: React.FC = () => {
     ];
 
     try {
-      await axios.post('http://https://quizbackend-orcin.vercel.app//submit-essay', {  answers }, {
+      await axios.post('https://quizbackend-orcin.vercel.app/submit-essay', {  answers }, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -89,7 +89,7 @@ useEffect(() => {
     const fetchFeedback = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://https://quizbackend-orcin.vercel.app//users', {
+        const response = await axios.get('https://quizbackend-orcin.vercel.app/users', {
           headers: {
             Authorization: `Bearer ${token}`
           }

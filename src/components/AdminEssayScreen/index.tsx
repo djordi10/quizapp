@@ -50,7 +50,7 @@ const EssayScreen: React.FC = () => {
       const token = localStorage.getItem('token');
       const userID = localStorage.getItem('currentUserID'); // Retrieve userID from localStorage
       try {
-        const response = await axios.get(`http://https://quizbackend-orcin.vercel.app//get-admin-essay?userid=${userID}`, {
+        const response = await axios.get(`https://quizbackend-orcin.vercel.app/get-admin-essay?userid=${userID}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -78,7 +78,7 @@ const EssayScreen: React.FC = () => {
     }));
 
     try {
-      await axios.post('http://https://quizbackend-orcin.vercel.app//submit-feedback', feedbackToSend, {
+      await axios.post('https://quizbackend-orcin.vercel.app/submit-feedback', feedbackToSend, {
         headers: {
           Authorization: `Bearer ${token}`
         }

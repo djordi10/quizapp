@@ -62,7 +62,7 @@ const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://https://quizbackend-orcin.vercel.app//login', { nim, password });
+      const response = await axios.post('https://quizbackend-orcin.vercel.app/login', { nim, password });
       const { token, fullname, dosen } = response.data;
   
       // Store the token and fullname in local storage
