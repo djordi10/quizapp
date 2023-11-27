@@ -97,7 +97,9 @@ const EssayScreen: React.FC = () => {
   return (
     <Container>
       <h2>Tuliskan</h2>
+      {feedback[0]?.feedback && (
       <RevisionBox>Revisi: {feedback[0].feedback}</RevisionBox>
+      )}
       <QuestionText>1. Buatlah 1 definisi formal!</QuestionText>
       <TextArea 
         value={responseOne} 

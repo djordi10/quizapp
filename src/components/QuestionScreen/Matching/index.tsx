@@ -36,6 +36,7 @@ const PairItem = styled.div`
   margin: 3px 0;
   background-color: #e0e0e0;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 // Props interface
@@ -58,6 +59,12 @@ const Matching: React.FC<MatchingProps> = ({ setA, setB, onPairsUpdated, resetIn
 
   const handleSelectB = (item: string) => {
     setSelectedB(item === selectedB ? null : item); // Toggle selection
+  };
+
+  const handleUnpair = (pairIndex: number) => {
+    const updatedPairs = pairs.filter((_, index) => index !== pairIndex);
+    setPairs(updatedPairs);
+    onPairsUpdated(updatedPairs);
   };
 
 
@@ -113,9 +120,12 @@ const Matching: React.FC<MatchingProps> = ({ setA, setB, onPairsUpdated, resetIn
         })}
       </ListContainer>
       <PairContainer>
-        <h4>Selected Pairs:</h4>
+      <h4>Pasangan Terpilih:</h4>
         {pairs.map(([itemA, itemB], index) => (
-          <PairItem key={index}>{`${itemA} - ${itemB}`}</PairItem>
+          <PairItem key={index} onClick={() => handleUnpair(index)}>
+            {`${itemA} - ${itemB}`}
+            {/* Optionally, add an icon or indicator for unpairing */}
+          </PairItem>
         ))}
       </PairContainer>
     </MatchingContainer>

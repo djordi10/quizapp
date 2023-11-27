@@ -113,7 +113,9 @@ const QuizTopicsScreen: React.FC = () => {
         setCurrentScreen(ScreenTypes.QuizDetailsScreen);
       }
     } else if (targetStep === 3) {
-      setCurrentScreen(ScreenTypes.EssayScreen);
+      if (currentStep === 3) {
+        setCurrentScreen(ScreenTypes.EssayScreen);
+      }
     }
   };
 

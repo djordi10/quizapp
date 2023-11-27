@@ -50,9 +50,9 @@ export const penulisan: Topic = {
     },
     {
       question: 'Dalam definisi nominal, verba kopulatif yang digunakan yakni . . . ',
-      choices: ['Definisi Formal', 'Definisi Nominal', 'Definisi Operasional', 'Definisi Sinonim'],
+      choices: ['adalah', 'Ialah', 'merupakan', 'Antara lain'],
       type: 'MCQs',
-      correctAnswers: ['Definisi Formal'],
+      correctAnswers: ['merupakan'],
       score: 5,
     },
     {
