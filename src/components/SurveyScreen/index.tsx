@@ -37,9 +37,7 @@ const SurveyScreen: React.FC = () => {
 
   const handleSubmit = async () => {
     const token = localStorage.getItem('token');
-    const userID = localStorage.getItem('currentUserID'); // Or however you determine the current user's ID
     const surveyData = {
-        userID,
         feeling,
         comments
     };

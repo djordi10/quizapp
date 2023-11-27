@@ -38,14 +38,14 @@ export const penulisan: Topic = {
       question: 'Dalam definisi formal, verba kopulatif yang digunakan yakni . . .',
       choices: ['Adalah', 'Ialah', 'Merupakan', 'Antara lain'],
       type: 'MCQs',
-      correctAnswers: ['Adalah'],
+      correctAnswers: ['Ialah'],
       score: 5,
     },
     {
       question: 'Dalam definisi nominal, verba kopulatif yang digunakan yakni . . .',
       choices: ['Adalah', 'Ialah', 'Merupakan', 'Antara lain'],
       type: 'MCQs',
-      correctAnswers: ['Merupakan'],
+      correctAnswers: ['Adalah'],
       score: 5,
     },
     {
@@ -56,7 +56,7 @@ export const penulisan: Topic = {
       score: 5,
     },
     {
-      question: 'Perhatikan kalimat berikut!\nMahasiswa adalah pelajar di perguruan tinggi.\nJenis definisi pada kalimat tersebut yakni . . .',
+      question: 'Perhatikan kalimat berikut!\nMahasiswa ialah pelajar di perguruan tinggi.\nJenis definisi pada kalimat tersebut yakni . . .',
       choices: ['Definisi Formal', 'Definisi Nominal', 'Definisi Operasional', 'Definisi Sinonim'],
       type: 'MCQs',
       correctAnswers: ['Definisi Formal'],
