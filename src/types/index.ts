@@ -11,7 +11,9 @@ export enum ScreenTypes {
   EssayScreen,
   LoginScreen,
   AdminScreen,
-  AdminEssayScreen
+  AdminEssayScreen,
+  AdminSurveyScreen,
+  SurveyScreen
 }
 
 export interface Result extends Question {

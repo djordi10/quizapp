@@ -13,6 +13,8 @@ import EssayScreen from '../QuizEssayScreen'
 import LoginScreen from '../LoginScreen'
 import AdminScreen from '../AdminScreen'
 import AdminEssayScreen from '../AdminEssayScreen'
+import AdminSurveyScreen from '../AdminSurveyScreen'
+import SurveyScreen from '../SurveyScreen'
 
 function Main() {
   const { currentScreen, setCurrentScreen, setCurrentStep } = useQuiz()
@@ -42,6 +44,8 @@ function Main() {
     [ScreenTypes.LoginScreen]: <LoginScreen />,
     [ScreenTypes.AdminScreen]: <AdminScreen />,
     [ScreenTypes.AdminEssayScreen]: <AdminEssayScreen />,
+    [ScreenTypes.AdminSurveyScreen]: <AdminSurveyScreen />,
+    [ScreenTypes.SurveyScreen]: <SurveyScreen />,
   }
 
   const ComponentToRender = screenComponents[currentScreen] || <SplashScreen />

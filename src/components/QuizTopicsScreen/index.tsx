@@ -122,6 +122,11 @@ const QuizTopicsScreen: React.FC = () => {
     localStorage.clear();
     setCurrentScreen(ScreenTypes.LoginScreen)
   };
+
+  const handleRefleksi = () => {
+    // Show popup if the current step is less than the target step
+    setCurrentScreen(ScreenTypes.SurveyScreen)
+  };
   
 
   useEffect(() => {
@@ -183,6 +188,17 @@ const QuizTopicsScreen: React.FC = () => {
           >
             <SelectButtonText>Tuliskan</SelectButtonText>
           </SelectButton>
+          {
+            currentStep == 4 &&
+            <SelectButton
+              active={true}
+              completed={false}
+              onClick={() => handleLogout()}
+            >
+              <SelectButtonText>Refleksi</SelectButtonText>
+            </SelectButton>
+          }
+
           <SelectButton
             active={true}
             completed={false}

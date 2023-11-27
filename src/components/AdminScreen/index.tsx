@@ -122,6 +122,8 @@ useEffect(() => {
   const handleViewReflection = (studentId) => {
     // Implement navigation to the reflection results page for the given student
     console.log('Navigate to view reflection for student:', studentId);
+    localStorage.setItem('currentUserID',studentId)
+    setCurrentScreen(ScreenTypes.AdminSurveyScreen);
   };
 
   return (
