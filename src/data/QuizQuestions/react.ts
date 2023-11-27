@@ -73,7 +73,7 @@ export const penulisan: Topic = {
       question: 'Perhatikan kalimat berikut!\nSabar adalah kunci hidupku\nJenis definisi dari kalimat tersebut yakni . . .',
       choices: ['Definisi Formal', 'Definisi Nominal', 'Definisi Operasional', 'Definisi Sinonim'],
       type: 'MCQs',
-      correctAnswers: ['Definisi Sinonim'],
+      correctAnswers: ['Definisi Formal'],
       score: 5,
     },
     {
@@ -108,7 +108,7 @@ export const penulisan: Topic = {
       question: 'Definisi tidak boleh dinyatakan dalam bahasa yang kabur atau tidak jelas. Contoh: “Partai politik adalah sekumpulan orang yang memiliki tujuan untuk mendapatkan kursi”.',
       choices: ['Benar', 'Salah'],
       type: 'boolean',
-      correctAnswers: ['Salah'],
+      correctAnswers: ['Benar'],
       score: 5,
     },
     {
