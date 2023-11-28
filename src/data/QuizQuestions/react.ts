@@ -49,7 +49,7 @@ export const penulisan: Topic = {
       score: 5,
     },
     {
-      question: 'Dalam definisi nominal, verba kopulatif yang digunakan yakni . . . ',
+      question: 'Dalam definisi operasional, verba kopulatif yang digunakan yakni . . . ',
       choices: ['adalah', 'Ialah', 'merupakan', 'Antara lain'],
       type: 'MCQs',
       correctAnswers: ['merupakan'],
@@ -73,7 +73,7 @@ export const penulisan: Topic = {
       question: 'Perhatikan kalimat berikut!\nSabar adalah kunci hidupku\nJenis definisi dari kalimat tersebut yakni . . .',
       choices: ['Definisi Formal', 'Definisi Nominal', 'Definisi Operasional', 'Definisi Sinonim'],
       type: 'MCQs',
-      correctAnswers: ['Definisi Formal'],
+      correctAnswers: ['Definisi Nominal'],
       score: 5,
     },
     {
