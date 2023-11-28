@@ -36,7 +36,7 @@ const ViewSurveyScreen: React.FC = () => {
       const userID = localStorage.getItem('currentUserID');
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get(`http://localhost:3000/get-user-surveys?userid=${userID}`, {
+        const response = await axios.get(`https://quizbackend-orcin.vercel.app/get-user-surveys?userid=${userID}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -55,9 +55,9 @@ const ViewSurveyScreen: React.FC = () => {
         {surveyResponses.length > 0 ? (
             surveyResponses.map((response, index) => (
                 <SurveyResponse key={index}>
-                    <ResponseText><strong>Perasaan:</strong> {response.Feeling}</ResponseText>
-                    <ResponseText><strong>Komentar:</strong> {response.Comments}</ResponseText>
-                    <ResponseText><strong>Waktu Pengiriman:</strong> {new Date(response.SubmittedAt).toLocaleString('id-ID')}</ResponseText>
+                    <ResponseText><strong>Perasaan:</strong> {response.feeling}</ResponseText>
+                    <ResponseText><strong>Komentar:</strong> {response.comments}</ResponseText>
+                    <ResponseText><strong>Waktu Pengiriman:</strong> {new Date(response.submittedat).toLocaleString('id-ID')}</ResponseText>
                 </SurveyResponse>
             ))
         ) : (
