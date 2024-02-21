@@ -136,7 +136,7 @@ const QuizTopicsScreen: React.FC = () => {
       const studentName = localStorage.getItem('fullname')// fetch student's name from login response or context
       const professorName = "Prof. Dr. Suyatno, M.Pd";
       const yourName = "Kevin Dewanda Moudizka";
-      const message = `Selamat datang ${studentName}, dari Prof. Dr. Suyatno, M.Pd., Dr. Titik Indarti, M.Pd., dan Kevin Dewanda Moudizka, S.Pd.`;
+      const message = `Selamat datang ${studentName}, dari Prof. Dr. Suyatno, M.Pd., dan Kevin Dewanda Moudizka, S.Pd.`;
       setWelcomeMessage(message);
       setShowWelcome(true)
     }
