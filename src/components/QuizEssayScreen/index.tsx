@@ -4,6 +4,7 @@ import { useQuiz } from '../../context/QuizContext';
 import Button from '../ui/Button';
 import { ScreenTypes } from '../../types'
 import axios from 'axios';
+import ReactRichEditor from 'react-rich-text-editor'
 
 const Container = styled.div`
   padding: 20px;

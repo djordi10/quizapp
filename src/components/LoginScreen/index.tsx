@@ -33,7 +33,7 @@ const InputField = styled.input`
 
 const CarouselImage = styled.img`
   width: 100%; /* Adjust width to fill the container */
-  height: 450px; /* Fixed height for all images */
+  height: auto;   /* Fixed height for all images */
   object-fit: cover; /* Ensures images cover the area without stretching */
 `;
 
