@@ -9,7 +9,7 @@ import CodeSnippet1 from '../../assets/images/code-snippet-1.png'
 export const penulisan: Topic = {
   topic: 'PILIHAN GANDA',
   level: 'Intermediate',
-  totalQuestions: 11,
+  totalQuestions: 17,
   totalScore: 100,
   totalTime: 2400,
   questions: [
@@ -84,32 +84,88 @@ export const penulisan: Topic = {
       score: 5,
     },
     {
-      question: 'Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!',
-      setA: [
-        'Penentuan jenis dongeng', 
-        'Menulis Berdasarkan Konsep-Konsep sebelumnya', 
-        'Revisi Aspek Cerita', 
-        'Konsep Latar', 
-        'Revisi Aspek Ejaan', 
-        'Konsep Alur', 
-        'Konsep Penokohan'
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Penentuan jenis dongeng"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
       ],
-      setB: [
-        'Tahap pramenulis dongeng', 
-        'Tahap menulis dongeng', 
-        'Tahap pascamenulis dongeng'
-      ],
-      correctPairs: [
-        ['Penentuan jenis dongeng', 'Tahap pramenulis dongeng'],
-        ['Menulis Berdasarkan Konsep-Konsep sebelumnya', 'Tahap menulis dongeng'],
-        ['Revisi Aspek Cerita', 'Tahap pascamenulis dongeng'],
-        ['Konsep Latar', 'Tahap pramenulis dongeng'],
-        ['Revisi Aspek Ejaan', 'Tahap pascamenulis dongeng'],
-        ['Konsep Alur', 'Tahap pramenulis dongeng'],
-        ['Konsep Penokohan', 'Tahap pramenulis dongeng']
-      ],
+      "correctPairs": [['Penentuan jenis dongeng','Tahap pramenulis dongeng']],
       type: 'matching',
-      score: 10
-    }    
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Menulis Berdasarkan Konsep-Konsep sebelumnya"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [ ["Menulis Berdasarkan Konsep-Konsep sebelumnya","Tahap menulis dongeng"]],
+      type: 'matching',
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Revisi Aspek Cerita"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [["Revisi Aspek Cerita","Tahap pascamenulis dongeng"]],
+      type: 'matching',
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Konsep Latar"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [["Konsep Latar","Tahap pramenulis dongeng"]],
+      type: 'matching',
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Revisi Aspek Ejaan"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [["Revisi Aspek Ejaan","Tahap pascamenulis dongeng"]],
+      type: 'matching',
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Konsep Alur"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [["Konsep Alur","Tahap pramenulis dongeng"]],
+      type: 'matching',
+      "score": 7
+    },
+    {
+      "question": "Pasangkanlah tahap-tahap penulisan dongeng sesuai dengan pasangannya!",
+      "setA": ["Konsep Penokohan"],
+      "setB": [
+        "Tahap pramenulis dongeng",
+        "Tahap menulis dongeng",
+        "Tahap pascamenulis dongeng"
+      ],
+      "correctPairs": [["Konsep Penokohan","Tahap pramenulis dongeng"]],
+      type: 'matching',
+      "score": 8
+    }   
   ],
 };
