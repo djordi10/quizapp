@@ -60,8 +60,6 @@ const EssayScreen: React.FC = () => {
         // Set existing answers if any
         response.data.forEach((item) => {
           if (item.questionid === 1) setResponseOne(item.useranswer);
-          if (item.questionid === 2) setResponseTwo(item.useranswer);
-          if (item.questionid === 3) setResponseThree(item.useranswer);
         });
       } catch (error) {
         console.error('Error fetching feedback:', error);
@@ -74,16 +72,14 @@ const EssayScreen: React.FC = () => {
     const token = localStorage.getItem('token'); // Retrieve the token from local storage
     
     const answers = [
-      { questionID: 1, userAnswer: responseOne },
-      { questionID: 2, userAnswer: responseTwo },
-      { questionID: 3, userAnswer: responseThree }
+      { questionID: 1, userAnswer: responseOne }
     ];
 
     try {
       await axios.post('https://quizbackend-orcin.vercel.app/submit-essay', {  answers }, {
         headers: {
           Authorization: `Bearer ${token}`
-        }
+        }  
       });
       console.log('Essays submitted successfully');
       localStorage.setItem('step','4')
@@ -100,26 +96,10 @@ const EssayScreen: React.FC = () => {
       {feedback[0]?.feedback && (
       <RevisionBox>Revisi: {feedback[0].feedback}</RevisionBox>
       )}
-      <QuestionText>1. Buatlah 1 definisi formal!</QuestionText>
+      <QuestionText>1. 1. Buatlah dan tulislah 1 dongeng (fabel, mite, legenda, dan sage) hasil karyamu sendiri !</QuestionText>
       <TextArea 
         value={responseOne} 
         onChange={(e) => setResponseOne(e.target.value)}
-      />
-    {feedback[1]?.feedback && (
-    <RevisionBox>Revisi: {feedback[1].feedback}</RevisionBox>
-    )}
-      <QuestionText>2. Buatlah 5 jenis definisi nominal (sinonim, simbolik, etimologis, stipulatif, dan denotatif)! Catatan: Definisi tidak boleh sama pada video materi!</QuestionText>
-      <TextArea 
-        value={responseTwo} 
-        onChange={(e) => setResponseTwo(e.target.value)}
-      />
-    {feedback[1]?.feedback && (
-    <RevisionBox>Revisi: {feedback[2].feedback}</RevisionBox>
-    )}
-      <QuestionText>3. Buatlah 1 definisi operasional</QuestionText>
-      <TextArea 
-        value={responseThree} 
-        onChange={(e) => setResponseThree(e.target.value)}
       />
 
       <Button text="Lanjutkan" onClick={handleSubmit} />

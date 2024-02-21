@@ -78,14 +78,14 @@ const QuizTopicsScreen: React.FC = () => {
   return (
     <PageCenter>
       <CenterCardContainer>
-        <Heading>Penulisan Definisi</Heading>
+        <Heading>Menulis Dongeng</Heading>
         <VideoContainer>
           <video
             ref={videoRef}
             onEnded={onVideoEnd}
             controls
           >
-            <source src="https://storage.cloud.google.com/rektbookie/quiz-video/tes-materi.mp4" type="video/mp4" />
+            <source src="https://storage.cloud.google.com/rektbookie/quiz-video/materi-2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </VideoContainer>

@@ -94,16 +94,16 @@ const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
         <CarouselContainer>
           <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} showStatus={false}>
             <div>
-              <CarouselImage src="/image/rose.jpg" alt="Mawar" />
-              <p className="legend">Apakah Mawar itu?</p>
+              <CarouselImage src="/image/img-1.jpeg" alt="Mawar" />
+              <p className="legend"></p>
             </div>
             <div>
-              <CarouselImage src="/image/mahasiswa.jpg" alt="Mahasiswa" />
-              <p className="legend">Apakah Mahasiswa itu?</p>
+              <CarouselImage src="/image/img-2.jpeg" alt="Mahasiswa" />
+              <p className="legend"></p>
             </div>
             <div>
-              <CarouselImage src="/image/cat.jpg" alt="Kucing" />
-              <p className="legend">Apakah Kucing itu?</p>
+              <CarouselImage src="/image/img-3.jpeg" alt="Kucing" />
+              <p className="legend"></p>
             </div>
           </Carousel>
         </CarouselContainer>

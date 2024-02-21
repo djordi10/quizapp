@@ -62,13 +62,13 @@ const SurveyScreen: React.FC = () => {
   return (
     <Container>
       <h2>User Satisfaction Survey</h2>
-      <QuestionText>a. Bagaimana perasaan Anda terhadap website penulisan definisi tersebut?</QuestionText>
+      <QuestionText>a. Bagaimana perasaan Anda terhadap website menulis dongeng tersebut?</QuestionText>
       <TextArea 
         value={feeling} 
         onChange={(e) => setFeeling(e.target.value)}
         placeholder="Your feelings about the website..."
       />
-      <QuestionText>b. Bagaimana komentar dan saran Anda terhadap website penulisan definisi tersebut?</QuestionText>
+      <QuestionText>b. Bagaimana komentar dan saran Anda terhadap website menulis dongeng tersebut?</QuestionText>
       <TextArea 
         value={comments} 
         onChange={(e) => setComments(e.target.value)}

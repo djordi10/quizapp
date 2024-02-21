@@ -39,7 +39,7 @@ export type Topic = {
 
 export const quiz: Record<string, Topic> = {
   React: penulisan,
-  'Penulisan Definisi': penulisan
+  'Menulis Dongeng': penulisan
   // ... any other topics ...
 };
 

@@ -150,20 +150,20 @@ const QuizTopicsScreen: React.FC = () => {
   return (
     <PageCenter>
       <CenterCardContainer>
-        <Heading>Penulisan Definisi</Heading>
+        <Heading>Menulis Dongeng</Heading>
         <CarouselContainer>
           <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} showStatus={false}>
             <div>
-              <CarouselImage src="/image/rose.jpg" alt="Mawar" />
-              <p className="legend">Apakah Mawar itu?</p>
+              <CarouselImage src="/image/img-1.jpeg" alt="" />
+              <p className="legend"></p>
             </div>
             <div>
-              <CarouselImage src="/image/mahasiswa.jpg" alt="Mahasiswa" />
-              <p className="legend">Apakah Mahasiswa itu?</p>
+              <CarouselImage src="/image/img-2.jpeg" alt="" />
+              <p className="legend"></p>
             </div>
             <div>
-              <CarouselImage src="/image/cat.jpg" alt="Kucing" />
-              <p className="legend">Apakah Kucing itu?</p>
+              <CarouselImage src="/image/img-3.jpeg" alt="" />
+              <p className="legend"></p>
             </div>
           </Carousel>
         </CarouselContainer>
