@@ -84,7 +84,7 @@ const CarouselContainer = styled.div`
 
 const CarouselImage = styled.img`
   width: 100%; /* Adjust width to fill the container */
-  height: auto; /* Fixed height for all images */
+  height: 450px; /* Fixed height for all images */
   object-fit: cover; /* Ensures images cover the area without stretching */
 `;
 

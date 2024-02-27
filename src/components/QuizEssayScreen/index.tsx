@@ -4,7 +4,8 @@ import { useQuiz } from '../../context/QuizContext';
 import Button from '../ui/Button';
 import { ScreenTypes } from '../../types'
 import axios from 'axios';
-import ReactRichEditor from 'react-rich-text-editor'
+import ReactQuill from 'react-quill'; // Import ReactQuill
+import 'react-quill/dist/quill.snow.css'; // Import the necessary CSS
 
 const Container = styled.div`
   padding: 20px;
@@ -46,6 +47,34 @@ const EssayScreen: React.FC = () => {
   const [responseThree, setResponseThree] = useState('');
   const [feedback, setFeedback] = useState([]);
   const { setCurrentScreen, setCurrentStep } = useQuiz();
+
+  const modules = {
+    toolbar: [
+      [{ 'font': [] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['link', 'image', 'video'],
+      ['clean']
+    ]
+  };
+
+  const formats = [
+    'font', 'size',
+    'bold', 'italic', 'underline', 'strike',
+    'list', 'bullet',
+    'script',
+    'indent',
+    'direction',
+    'color', 'background',
+    'align',
+    'link', 'image', 'video'
+  ];
 
   useEffect(() => {
     const fetchFeedback = async () => {
@@ -98,10 +127,13 @@ const EssayScreen: React.FC = () => {
       <RevisionBox>Revisi: {feedback[0].feedback}</RevisionBox>
       )}
       <QuestionText>1. 1. Buatlah dan tulislah 1 dongeng (fabel, mite, legenda, dan sage) hasil karyamu sendiri !</QuestionText>
-      <TextArea 
-        value={responseOne} 
-        onChange={(e) => setResponseOne(e.target.value)}
-      />
+      <ReactQuill 
+        theme="snow" // Use the "snow" theme
+        value={responseOne}
+        onChange={setResponseOne}
+        modules={modules}
+        formats={formats}
+        />
 
       <Button text="Lanjutkan" onClick={handleSubmit} />
     </Container>

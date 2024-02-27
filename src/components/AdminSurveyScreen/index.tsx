@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useQuiz } from '../../context/QuizContext'
+import { ScreenTypes } from '../../types'
+import Button from '../ui/Button';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -9,6 +12,13 @@ const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 const SurveyHeader = styled.h2`
@@ -29,6 +39,7 @@ const ResponseText = styled.p`
 `;
 
 const ViewSurveyScreen: React.FC = () => {
+  const { setCurrentScreen } = useQuiz();
   const [surveyResponses, setSurveyResponses] = useState([]);
 
   useEffect(() => {
@@ -49,8 +60,17 @@ const ViewSurveyScreen: React.FC = () => {
     fetchSurveyResponses();
   }, []);
 
+  const handleBack = () => {
+    setCurrentScreen(ScreenTypes.AdminScreen);
+    // Logic to navigate back
+    console.log('Navigate back');
+  };
+
   return (
     <Container>
+      <Header>
+        <Button text="Kembali" onClick={handleBack} />
+      </Header>
         <SurveyHeader>Respon Survei Pengguna</SurveyHeader>
         {surveyResponses.length > 0 ? (
             surveyResponses.map((response, index) => (

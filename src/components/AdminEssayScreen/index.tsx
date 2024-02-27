@@ -4,11 +4,20 @@ import axios from 'axios';
 import Button from '../ui/Button';
 import { ScreenTypes } from '../../types'
 import { useQuiz } from '../../context/QuizContext'
+import ReactQuill from 'react-quill'; // Import ReactQuill
+import 'react-quill/dist/quill.snow.css'; // Import ReactQuill styles
 
 const Container = styled.div`
   padding: 20px;
   height: 100vh;
   overflow-y: auto;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: flex-start; /* Aligns items to the left */
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 const TextArea = styled.textarea`
@@ -91,13 +100,26 @@ const EssayScreen: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    // Navigate back to the AdminPage
+    setCurrentScreen(ScreenTypes.AdminScreen);
+  };
+
   return (
     <Container>
+      <Header>
+        <Button text="Kembali" onClick={handleBack} />
+        {/* You can place additional header content here if needed */}
+      </Header>
       <h2>User Essays and Feedback</h2>
       {score !== null && <ScoreText>User Score: {score}</ScoreText>}
       {essayData.map(({ questionid, useranswer, feedback }) => (
         <div key={questionid}>
-          <AnswerText>Answer to Question {questionid}: {useranswer}</AnswerText>
+          <AnswerText>Answer to Question {questionid}:</AnswerText>
+          <ReactQuill 
+            theme="snow"
+            value={useranswer}
+          />
           <FeedbackBox>
             <TextArea
               value={feedback}
