@@ -88,7 +88,7 @@ const QuizTopicsScreen: React.FC = () => {
             playsInline
             webkit-playsinline
           >
-            <source src="https://storage.cloud.google.com/rektbookie/quiz-video/materi-2.mp4" type="video/mp4" />
+            <source src="https://storage.googleapis.com/rektbookie/quiz-video/materi-2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </VideoContainer>
