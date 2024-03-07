@@ -85,6 +85,8 @@ const QuizTopicsScreen: React.FC = () => {
             onEnded={onVideoEnd}
             controls
             muted
+            playsInline
+            webkit-playsinline
           >
             <source src="https://storage.cloud.google.com/rektbookie/quiz-video/materi-2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -93,7 +95,6 @@ const QuizTopicsScreen: React.FC = () => {
         <Button
           text="Lanjutkan"
           onClick={goToQuizDetailsScreen}
-          disabled={!videoFinished}
         />
       </CenterCardContainer>
     </PageCenter>
