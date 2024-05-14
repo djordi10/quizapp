@@ -215,7 +215,7 @@ const QuizTopicsScreen: React.FC = () => {
             buttonTitle="Tutup"
             onClick={() => setShowDocument(false)}
           >
-            <DocumentIframe src="/path/to/your/document.pdf" title="Document Viewer"></DocumentIframe>
+            <DocumentIframe src="/image/doc.pdf" title="Document Viewer"></DocumentIframe>
           </ModalWrapper>
         )}
       </CenterCardContainer>
