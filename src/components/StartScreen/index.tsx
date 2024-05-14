@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useQuiz } from '../../context/QuizContext';
 import { ScreenTypes } from '../../types';
+import ModalWrapper from '../ui/ModalWrapper';
+import { AppLogo } from '../../config/icons';
 
 // Styled Components
 const PageContainer = styled.div`
@@ -108,9 +110,17 @@ const LoginButton = styled.button`
   }
 `;
 
+const DocumentIframe = styled.iframe`
+  width: 100%;
+  height: 400px;
+  border: none;
+  margin-bottom: 20px; /* Add some space at the bottom */
+`;
+
 // Component
 const QuotePage = () => {
   const { setCurrentScreen } = useQuiz();
+  const [showDocument, setShowDocument] = useState(true);
 
   const goToLogin = () => {
     setCurrentScreen(ScreenTypes.LoginScreen);
@@ -160,6 +170,17 @@ const QuotePage = () => {
         </ImageQuoteRow>
         <LoginButton onClick={goToLogin}>Go to Login</LoginButton>
       </ContentContainer>
+      {showDocument && (
+        <ModalWrapper
+          title="Petunjuk penggunaan website"
+          subtitle=""
+          icon={<AppLogo />}
+          buttonTitle="Tutup"
+          onClick={() => setShowDocument(false)}
+        >
+          <DocumentIframe src="/image/doc.pdf" title="Document Viewer"></DocumentIframe>
+        </ModalWrapper>
+      )}
     </PageContainer>
   );
 };

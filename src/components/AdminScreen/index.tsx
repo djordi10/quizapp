@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios'
-import { ScreenTypes } from '../../types'
-import { useQuiz } from '../../context/QuizContext'
+import axios from 'axios';
+import { ScreenTypes } from '../../types';
+import { useQuiz } from '../../context/QuizContext';
+
+// Define types
+interface Student {
+  userid: string;
+  fullname: string;
+  nim: string;
+  kelas: string;
+}
+
+interface StudentsByKelas {
+  [key: string]: Student[];
+}
 
 // Enhanced styled components
 const AdminContainer = styled.div`
@@ -19,6 +31,32 @@ const AdminHeader = styled.h2`
   color: #004085; /* Darker shade for better contrast */
   margin-bottom: 40px; /* Added more spacing */
   font-size: 24px; /* Increased font size */
+`;
+
+const TabsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const Tab = styled.button<{ active: boolean }>`
+  background-color: ${({ active }) => (active ? '#007bff' : '#f8f9fa')};
+  color: ${({ active }) => (active ? '#fff' : '#007bff')};
+  border: 2px solid #007bff;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: ${({ active }) => (active ? '#0056b3' : '#e2e6ea')};
+  }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const StudentList = styled.ul`
@@ -65,6 +103,7 @@ const Button = styled.button`
 
 const LogoutButton = styled(Button)`
   background-color: #dc3545; /* Red color for logout to differentiate */
+  margin-bottom: 20px;
 
   &:hover {
     background-color: #c82333;
@@ -80,8 +119,9 @@ const SectionHeader = styled.h3`
 `;
 
 // AdminPage component with enhanced styling
-const AdminPage = () => {
-  const [students, setStudents] = useState([]);
+const AdminPage: React.FC = () => {
+  const [students, setStudents] = useState<StudentsByKelas>({});
+  const [activeTab, setActiveTab] = useState<string>('');
   const { setCurrentScreen } = useQuiz();
 
   useEffect(() => {
@@ -90,10 +130,10 @@ const AdminPage = () => {
       try {
         const response = await axios.get('https://quizbackend-orcin.vercel.app/users', {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
-        const studentsByKelas = response.data.reduce((acc, student) => {
+        const studentsByKelas: StudentsByKelas = response.data.reduce((acc: StudentsByKelas, student: Student) => {
           if (!acc[student.kelas]) {
             acc[student.kelas] = [];
           }
@@ -101,6 +141,7 @@ const AdminPage = () => {
           return acc;
         }, {});
         setStudents(studentsByKelas);
+        setActiveTab(Object.keys(studentsByKelas)[0]); // Set the first class as the default active tab
       } catch (error) {
         console.error('Error fetching students:', error);
       }
@@ -108,7 +149,7 @@ const AdminPage = () => {
     fetchStudents();
   }, []);
 
-  const handleScoreEssay = (studentId) => {
+  const handleScoreEssay = (studentId: string) => {
     localStorage.setItem('currentUserID', studentId);
     setCurrentScreen(ScreenTypes.AdminEssayScreen);
   };
@@ -118,7 +159,7 @@ const AdminPage = () => {
     setCurrentScreen(ScreenTypes.LoginScreen);
   };
 
-  const handleViewReflection = (studentId) => {
+  const handleViewReflection = (studentId: string) => {
     localStorage.setItem('currentUserID', studentId);
     setCurrentScreen(ScreenTypes.AdminSurveyScreen);
   };
@@ -127,22 +168,32 @@ const AdminPage = () => {
     <AdminContainer>
       <AdminHeader>Prof. Dr. Suyatno, M.Pd. - Dosen Pengampu Mata Kuliah Sastra Anak</AdminHeader>
       <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
-      {Object.entries(students).map(([kelas, studentsInKelas]) => (
-        <React.Fragment key={kelas}>
-          <SectionHeader>Kelas 2022 {kelas}</SectionHeader>
-          <StudentList>
-            {studentsInKelas.map((student) => (
-              <StudentItem key={student.userid}>
-                {student.fullname} - {student.nim}
-                <div>
-                  <Button onClick={() => handleScoreEssay(student.userid)}>Nilai Essay</Button>
-                  <Button onClick={() => handleViewReflection(student.userid)}>Refleksi</Button>
-                </div>
-              </StudentItem>
-            ))}
-          </StudentList>
-        </React.Fragment>
-      ))}
+      <TabsContainer>
+        {Object.keys(students).map((kelas) => (
+          <Tab key={kelas} active={activeTab === kelas} onClick={() => setActiveTab(kelas)}>
+            {`Kelas 2022 ${kelas}`}
+          </Tab>
+        ))}
+      </TabsContainer>
+      {Object.entries(students).map(
+        ([kelas, studentsInKelas]) =>
+          activeTab === kelas && (
+            <div key={kelas}>
+              <SectionHeader>{`Kelas 2022 ${kelas}`}</SectionHeader>
+              <StudentList>
+                {studentsInKelas.map((student) => (
+                  <StudentItem key={student.userid}>
+                    {student.fullname} - {student.nim}
+                    <div>
+                      <Button onClick={() => handleScoreEssay(student.userid)}>Nilai Essay</Button>
+                      <Button onClick={() => handleViewReflection(student.userid)}>Refleksi</Button>
+                    </div>
+                  </StudentItem>
+                ))}
+              </StudentList>
+            </div>
+          )
+      )}
     </AdminContainer>
   );
 };
