@@ -18,12 +18,14 @@ const ModalContainer = styled.div`
 
 const ModalContent = styled.div`
   width: 600px;
-  padding: 50px 25px;
+  max-height: 80vh;
+  padding: 20px 25px;
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 10px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  overflow-y: auto; /* Makes the content scrollable */
 `;
 
 const ModalTitle = styled.h6`
@@ -35,7 +37,6 @@ const ModalTitle = styled.h6`
 `;
 
 const ModalSubtitle = styled.p`
-  font-size: 24px;
   font-size: clamp(18px, 4vw, 24px);
   font-weight: 500;
   text-align: center;
@@ -50,7 +51,7 @@ interface ModalWrapperProps {
   icon: JSX.Element;
   buttonTitle: string;
   onClick: () => void;
-  children?: React.ReactNode; // Add this line to support children
+  children?: React.ReactNode;
 }
 
 const ModalWrapper: FC<ModalWrapperProps> = ({
@@ -59,7 +60,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
   icon,
   buttonTitle,
   onClick,
-  children, // Add this line to accept children
+  children,
 }) => {
   return (
     <ModalContainer>
@@ -67,7 +68,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
         {icon}
         <ModalTitle>{title}</ModalTitle>
         <ModalSubtitle>{subtitle}</ModalSubtitle>
-        {children} {/* Render children here */}
+        {children}
         <Button text={buttonTitle} onClick={onClick} bold big />
       </ModalContent>
     </ModalContainer>

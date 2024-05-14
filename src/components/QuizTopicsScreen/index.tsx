@@ -87,9 +87,9 @@ const CarouselImage = styled.img`
 
 const DocumentIframe = styled.iframe`
   width: 100%;
-  height: 600px;
+  height: 400px;
   border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add some space at the bottom */
 `;
 
 const QuizTopicsScreen: React.FC = () => {
@@ -215,7 +215,7 @@ const QuizTopicsScreen: React.FC = () => {
             buttonTitle="Tutup"
             onClick={() => setShowDocument(false)}
           >
-            <DocumentIframe src="/images/doc.pdf" title="Document Viewer"></DocumentIframe>
+            <DocumentIframe src="/path/to/your/document.pdf" title="Document Viewer"></DocumentIframe>
           </ModalWrapper>
         )}
       </CenterCardContainer>
