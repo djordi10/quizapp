@@ -70,17 +70,6 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const QuestionType = styled.div`
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: ${({ theme }) => theme.colors.cardBackground};
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-`;
-
 const QuestionScreen: FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
@@ -174,24 +163,16 @@ const QuestionScreen: FC = () => {
 
   useTimer(timer, quizDetails, setEndTime, setTimer, setShowTimerModal, showResultModal);
 
-  // Map the question types to more readable formats
-  const questionTypeMap = {
-    MCQs: 'Pilihan Ganda',
-    boolean: 'Benar/Salah',
-    MAQs: 'Jawaban Ganda',
-    matching: 'Pencocokan',
-  };
-
   return (
     <PageCenter>
       <LogoContainer>
       </LogoContainer>
       <QuizContainer selectedAnswer={selectedAnswer.length > 0}>
-        <QuestionType>{questionTypeMap[type]}</QuestionType>
         <QuizHeader
           activeQuestion={activeQuestion}
           totalQuestions={quizDetails.totalQuestions}
           timer={timer}
+          type={type}
         />
         <Question
           question={question}
