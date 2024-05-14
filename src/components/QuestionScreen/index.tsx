@@ -13,8 +13,8 @@ import QuizHeader from './QuizHeader';
 const QuizContainer = styled.div<{ selectedAnswer: boolean }>`
   width: 900px;
   min-height: 500px;
-  max-height: calc(100vh - 60px); // Adjust the maximum height as needed
-  overflow-y: auto; // Enables vertical scrolling if content overflows
+  max-height: calc(100vh - 60px); // Sesuaikan tinggi maksimum sesuai kebutuhan
+  overflow-y: auto; // Memungkinkan pengguliran vertikal jika konten meluap
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 4px;
   padding: 30px 60px 80px 60px;
@@ -41,9 +41,8 @@ const PageCenter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto; // Enables vertical scrolling
+  overflow-y: auto; // Memungkinkan pengguliran vertikal
 `;
-
 
 const LogoContainer = styled.div`
   margin-top: 50px;
@@ -71,6 +70,17 @@ const ButtonWrapper = styled.div`
   }
 `;
 
+const QuestionType = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: ${({ theme }) => theme.colors.cardBackground};
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+`;
+
 const QuestionScreen: FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
@@ -80,7 +90,7 @@ const QuestionScreen: FC = () => {
 
   const [userPairs, setUserPairs] = useState<[string, string][]>([]);
 
-  const [resetMatching, setResetMatching] = useState<number>(0); // State to trigger reset
+  const [resetMatching, setResetMatching] = useState<number>(0); // State untuk memicu reset
 
   const handlePairsUpdated = (pairs: [string, string][]) => {
     setUserPairs(pairs);
@@ -119,9 +129,9 @@ const QuestionScreen: FC = () => {
       }
     }
 
-    // Logic for handling matching selections
+    // Logika untuk menangani pilihan pencocokan
     if (type === 'matching') {
-      // Example logic for handling matching selections
+      // Contoh logika untuk menangani pilihan pencocokan
       // setSelectedPairs([...selectedPairs, [item, otherSelectedItem]]);
       
     }
@@ -131,8 +141,7 @@ const QuestionScreen: FC = () => {
     let isMatch = false;
 
     if (type === 'matching') {
-      
-      // Logic for checking if the selected pairs match the correct pairs
+      // Logika untuk memeriksa apakah pasangan yang dipilih cocok dengan pasangan yang benar
       isMatch = userPairs.every(userPair => 
         correctPairs.some(correctPair => 
           correctPair[0] === userPair[0] && correctPair[1] === userPair[1]
@@ -148,7 +157,7 @@ const QuestionScreen: FC = () => {
     if (activeQuestion !== questions.length - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
-      // How long it took to finish the quiz
+      // Berapa lama waktu yang dibutuhkan untuk menyelesaikan kuis
       const timeTaken = quizDetails.totalTime - timer;
       setEndTime(timeTaken);
       setShowResultModal(true);
@@ -165,11 +174,20 @@ const QuestionScreen: FC = () => {
 
   useTimer(timer, quizDetails, setEndTime, setTimer, setShowTimerModal, showResultModal);
 
+  // Map the question types to more readable formats
+  const questionTypeMap = {
+    MCQs: 'Pilihan Ganda',
+    boolean: 'Benar/Salah',
+    MAQs: 'Jawaban Ganda',
+    matching: 'Pencocokan',
+  };
+
   return (
     <PageCenter>
       <LogoContainer>
       </LogoContainer>
       <QuizContainer selectedAnswer={selectedAnswer.length > 0}>
+        <QuestionType>{questionTypeMap[type]}</QuestionType>
         <QuizHeader
           activeQuestion={activeQuestion}
           totalQuestions={quizDetails.totalQuestions}
@@ -191,7 +209,7 @@ const QuestionScreen: FC = () => {
         />
         <ButtonWrapper>
           <Button
-            text={activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+            text={activeQuestion === questions.length - 1 ? 'Selesai' : 'Berikutnya'}
             onClick={onClickNext}
             icon={<Next />}
             iconPosition="right"
@@ -205,11 +223,11 @@ const QuestionScreen: FC = () => {
       </QuizContainer>
       {(showTimerModal || showResultModal) && (
         <ModalWrapper
-          title={showResultModal ? 'Done!' : 'Your time is up!'}
-          subtitle={`You have attempted ${result.length} questions in total.`}
+          title={showResultModal ? 'Selesai!' : 'Waktu Anda Habis!'}
+          subtitle={`Anda telah mencoba ${result.length} pertanyaan secara total.`}
           onClick={() => setCurrentScreen(ScreenTypes.ResultScreen)}
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
-          buttonTitle="SHOW RESULT"
+          buttonTitle="TAMPILKAN HASIL"
         />
       )}
     </PageCenter>

@@ -119,7 +119,7 @@ const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
         />
-        <LoginButton onClick={handleLogin}>Login</LoginButton>
+        <LoginButton onClick={handleLogin}>Masuk</LoginButton>
       </LoginForm>
     </LoginContainer>
   );

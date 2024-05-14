@@ -168,7 +168,7 @@ const QuotePage = () => {
           </QuoteBox>
           <Image src="/image/img4.png" alt="Legenda" />
         </ImageQuoteRow>
-        <LoginButton onClick={goToLogin}>Go to Login</LoginButton>
+        <LoginButton onClick={goToLogin}>Lanjutkan</LoginButton>
       </ContentContainer>
       {showDocument && (
         <ModalWrapper
