@@ -11,6 +11,7 @@ import ResultScreen from '../ResultScreen'
 import SplashScreen from '../SplashScreen'
 import EssayScreen from '../QuizEssayScreen'
 import LoginScreen from '../LoginScreen'
+import StartScreen from '../StartScreen'
 import AdminScreen from '../AdminScreen'
 import AdminEssayScreen from '../AdminEssayScreen'
 import AdminSurveyScreen from '../AdminSurveyScreen'
@@ -28,7 +29,7 @@ function Main() {
           setCurrentScreen(ScreenTypes.QuizTopicsScreen)
         }
       }else{
-        setCurrentScreen(ScreenTypes.LoginScreen)
+        setCurrentScreen(ScreenTypes.StartScreen)
       }
     }, 1000)
   }, [setCurrentScreen])
@@ -42,6 +43,7 @@ function Main() {
     [ScreenTypes.VideoScreen]: <VideoScreen />,
     [ScreenTypes.EssayScreen]: <EssayScreen />,
     [ScreenTypes.LoginScreen]: <LoginScreen />,
+    [ScreenTypes.StartScreen]: <StartScreen />,
     [ScreenTypes.AdminScreen]: <AdminScreen />,
     [ScreenTypes.AdminEssayScreen]: <AdminEssayScreen />,
     [ScreenTypes.AdminSurveyScreen]: <AdminSurveyScreen />,

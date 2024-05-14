@@ -10,6 +10,7 @@ export enum ScreenTypes {
   VideoScreen,
   EssayScreen,
   LoginScreen,
+  StartScreen,
   AdminScreen,
   AdminEssayScreen,
   AdminSurveyScreen,
