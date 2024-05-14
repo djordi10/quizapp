@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import styled from 'styled-components'
+import { FC } from 'react';
+import styled from 'styled-components';
 
-import Button from '../Button'
+import Button from '../Button';
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -14,7 +14,7 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 15px;
-`
+`;
 
 const ModalContent = styled.div`
   width: 600px;
@@ -24,7 +24,7 @@ const ModalContent = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`
+`;
 
 const ModalTitle = styled.h6`
   font-size: clamp(24px, 4vw, 32px);
@@ -32,7 +32,7 @@ const ModalTitle = styled.h6`
   color: ${({ theme }) => theme.colors.themeColor};
   margin-top: 26px;
   margin-bottom: 20px;
-`
+`;
 
 const ModalSubtitle = styled.p`
   font-size: 24px;
@@ -42,14 +42,15 @@ const ModalSubtitle = styled.p`
   line-height: 1.3;
   color: ${({ theme }) => theme.colors.primaryText};
   margin-bottom: clamp(18px, calc(18px + 28 * ((100vw - 600px) / 1320)), 48px);
-`
+`;
 
 interface ModalWrapperProps {
-  title: string
-  subtitle: string
-  icon: JSX.Element
-  buttonTitle: string
-  onClick: () => void
+  title: string;
+  subtitle: string;
+  icon: JSX.Element;
+  buttonTitle: string;
+  onClick: () => void;
+  children?: React.ReactNode; // Add this line to support children
 }
 
 const ModalWrapper: FC<ModalWrapperProps> = ({
@@ -58,6 +59,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
   icon,
   buttonTitle,
   onClick,
+  children, // Add this line to accept children
 }) => {
   return (
     <ModalContainer>
@@ -65,10 +67,11 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
         {icon}
         <ModalTitle>{title}</ModalTitle>
         <ModalSubtitle>{subtitle}</ModalSubtitle>
+        {children} {/* Render children here */}
         <Button text={buttonTitle} onClick={onClick} bold big />
       </ModalContent>
     </ModalContainer>
-  )
-}
+  );
+};
 
-export default ModalWrapper
+export default ModalWrapper;

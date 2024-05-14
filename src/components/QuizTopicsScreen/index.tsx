@@ -1,23 +1,20 @@
-import styled from 'styled-components'
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { AppLogo } from '../../config/icons';
+import { useQuiz } from '../../context/QuizContext';
+import { device } from '../../styles/BreakPoints';
+import { ScreenTypes } from '../../types';
+import { Carousel } from 'react-responsive-carousel'; // Ensure you have installed this package
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 
-import { AppLogo } from '../../config/icons'
-import { useQuiz } from '../../context/QuizContext'
-import { quizTopics } from '../../data/quizTopics'
-import { device } from '../../styles/BreakPoints'
+import Button from '../ui/Button';
+import ModalWrapper from '../ui/ModalWrapper';
 import {
   CenterCardContainer,
   HighlightedText,
   LogoContainer,
   PageCenter,
-} from '../../styles/Global'
-import { ScreenTypes } from '../../types'
-import { Carousel } from 'react-responsive-carousel'; // Ensure you have installed this package
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
-
-import Button from '../ui/Button'
-import ModalWrapper from '../ui/ModalWrapper';
-
+} from '../../styles/Global';
 
 const Heading = styled.h2`
   font-size: 32px;
@@ -88,24 +85,31 @@ const CarouselImage = styled.img`
   object-fit: cover; /* Ensures images cover the area without stretching */
 `;
 
+const DocumentIframe = styled.iframe`
+  width: 100%;
+  height: 600px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
 const QuizTopicsScreen: React.FC = () => {
   const { setCurrentScreen, currentStep, setCurrentStep } = useQuiz();
   const [showPopup, setShowPopup] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [welcomeMessage, setWelcomeMessage] = useState('');
+  const [showDocument, setShowDocument] = useState(false);
 
   useEffect(() => {
-    setCurrentStep( parseInt(localStorage.getItem('step'))  )
+    const step = parseInt(localStorage.getItem('step') || '1');
+    setCurrentStep(step);
+    if (step === 1) {
+      setShowDocument(true); // Show the document popup on login
+    }
   }, []);
 
   const handleButtonClick = (targetStep: number) => {
-    // Show popup if the current step is less than the target step
     if (currentStep < targetStep) {
       setShowPopup(true);
     }
-  
-    // Navigate to specific screens based on targetStep and currentStep
+
     if (targetStep === 1) {
       setCurrentScreen(ScreenTypes.VideoScreen);
     } else if (targetStep === 2) {
@@ -120,32 +124,19 @@ const QuizTopicsScreen: React.FC = () => {
   };
 
   const handleLogout = () => {
-    // Show popup if the current step is less than the target step
     localStorage.clear();
-    setCurrentScreen(ScreenTypes.LoginScreen)
+    setCurrentScreen(ScreenTypes.LoginScreen);
   };
 
   const handleRefleksi = () => {
-    // Show popup if the current step is less than the target step
-    setCurrentScreen(ScreenTypes.SurveyScreen)
+    setCurrentScreen(ScreenTypes.SurveyScreen);
   };
-  
 
   useEffect(() => {
-    if(currentStep == 1){
-      const studentName = localStorage.getItem('fullname')// fetch student's name from login response or context
-      const professorName = "Prof. Dr. Suyatno, M.Pd";
-      const yourName = "Kevin Dewanda Moudizka";
-      const message = `Selamat datang ${studentName}, dari Prof. Dr. Suyatno, M.Pd., dan Kevin Dewanda Moudizka, S.Pd.`;
-      setWelcomeMessage(message);
-      setShowWelcome(true)
+    if (currentStep === 4) {
+      setShowPopup(true);
     }
-
-    if(currentStep == 4){
-      setShowSuccess(true)
-    }
-  }, [currentStep])
-
+  }, [currentStep]);
 
   return (
     <PageCenter>
@@ -190,21 +181,19 @@ const QuizTopicsScreen: React.FC = () => {
           >
             <SelectButtonText>Tuliskan</SelectButtonText>
           </SelectButton>
-          {
-            currentStep == 4 &&
+          {currentStep === 4 && (
             <SelectButton
               active={true}
               completed={false}
-              onClick={() => handleRefleksi()}
+              onClick={handleRefleksi}
             >
               <SelectButtonText>Refleksi</SelectButtonText>
             </SelectButton>
-          }
-
+          )}
           <SelectButton
             active={true}
             completed={false}
-            onClick={() => handleLogout()}
+            onClick={handleLogout}
           >
             <SelectButtonText>Logout</SelectButtonText>
           </SelectButton>
@@ -218,23 +207,16 @@ const QuizTopicsScreen: React.FC = () => {
             onClick={() => setShowPopup(false)}
           />
         )}
-        {showWelcome && (
+        {showDocument && (
           <ModalWrapper
-            title="Welcome"
-            subtitle={welcomeMessage}
+            title="Dokumen"
+            subtitle=""
             icon={<AppLogo />}
             buttonTitle="Tutup"
-            onClick={() => setShowWelcome(false)}
-          />
-        )}
-        {showSuccess && (
-          <ModalWrapper
-            title="Berhasil"
-            subtitle="Essay Berhasil Di input"
-            icon={<AppLogo />}
-            buttonTitle="Tutup"
-            onClick={() => setShowSuccess(false)}
-          />
+            onClick={() => setShowDocument(false)}
+          >
+            <DocumentIframe src="/images/doc.pdf" title="Document Viewer"></DocumentIframe>
+          </ModalWrapper>
         )}
       </CenterCardContainer>
     </PageCenter>

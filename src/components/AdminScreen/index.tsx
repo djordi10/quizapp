@@ -136,7 +136,7 @@ const AdminPage = () => {
                 {student.fullname} - {student.nim}
                 <div>
                   <Button onClick={() => handleScoreEssay(student.userid)}>Nilai Essay</Button>
-                  <Button onClick={() => handleViewReflection(student.userid)}>Lihat Refleksi</Button>
+                  <Button onClick={() => handleViewReflection(student.userid)}>Refleksi</Button>
                 </div>
               </StudentItem>
             ))}

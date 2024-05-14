@@ -139,7 +139,7 @@ const QuotePage = () => {
         </ImageQuoteRow>
         <ImageQuoteRow>
           <QuoteBox>
-            <QuoteText>Age adalah dongeng cerita sejarah yang mengandung unsur perjuangan tokoh yang memiliki sifat dan perilaku pahlawan (seperti keberanian, keperkasaan, kerelaan, berkorban, dan kekesatriaan).</QuoteText>
+            <QuoteText>Sage adalah dongeng cerita sejarah yang mengandung unsur perjuangan tokoh yang memiliki sifat dan perilaku pahlawan (seperti keberanian, keperkasaan, kerelaan, berkorban, dan kekesatriaan).</QuoteText>
             <QuoteText>Contoh judul dongeng sage misalnya Si Buta dari Gua Hantu.</QuoteText>
           </QuoteBox>
           <Image src="/image/img2.png" alt="Sage" />

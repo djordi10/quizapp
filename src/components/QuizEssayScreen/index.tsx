@@ -126,7 +126,7 @@ const EssayScreen: React.FC = () => {
       {feedback[0]?.feedback && (
       <RevisionBox>Revisi: {feedback[0].feedback}</RevisionBox>
       )}
-      <QuestionText>1. 1. Buatlah dan tulislah 1 dongeng (fabel, mite, legenda, dan sage) hasil karyamu sendiri !</QuestionText>
+      <QuestionText>1. Buatlah dan tulislah 1 dongeng (fabel, mite, legenda, atau sage) hasil karyamu sendiri !</QuestionText>
       <ReactQuill 
         theme="snow" // Use the "snow" theme
         value={responseOne}
